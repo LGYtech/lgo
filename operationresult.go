@@ -36,6 +36,14 @@ func NewFailure() *OperationResult {
 	return &OperationResult{Result: lgoOrFailure, ReturnObject: nil, ErrorMessage: "", ErrorCode: 0}
 }
 
+// NewFailure Returns a new lgoOrFailure result with given error
+func NewFailureWithError(err error) *OperationResult {
+	if err != nil {
+		return &OperationResult{Result: lgoOrFailure, ReturnObject: nil, ErrorMessage: err.Error(), ErrorCode: 0}
+	}
+	return NewFailure()
+}
+
 // NewFailureWithReturnObject Returns a new lgoOrFailure result with given return object
 func NewFailureWithReturnObject(returnObject interface{}) *OperationResult {
 	return &OperationResult{Result: lgoOrFailure, ReturnObject: returnObject, ErrorMessage: "", ErrorCode: 0}
